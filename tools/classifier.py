@@ -1,7 +1,13 @@
 import json
 from openai import OpenAI
 
-client = OpenAI()
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv (find_dotenv())
+api_key=os.getenv("OPENAI_KEY")
+
+client = OpenAI(api_key = api_key)
 
 CATEGORIES = [
     "medication_error",
@@ -17,8 +23,22 @@ SEVERITIES = ["low", "medium", "high"]
 
 
 def classify_ticket(ticket_text: str) -> dict:
+
+    prompt = f'''
+        Classify the following healthcare incident ticket.
+
+        Rules:
+        - Choose exactly one primary_category
+        - Put any additional applicable categories in secondary_categories
+        - Do not repeat the primary category in secondary_categories
+        - Use only the allowed categories and severity values
+
+        Ticket:
+        {ticket_text}
+    '''
+
     response = client.responses.create(
-        model="gpt-5.3",
+        model="gpt-4o",
         input=[
             {
                 "role": "system",
@@ -29,18 +49,7 @@ def classify_ticket(ticket_text: str) -> dict:
             },
             {
                 "role": "user",
-                "content": f"""
-Classify the following healthcare incident ticket.
-
-Rules:
-- Choose exactly one primary_category
-- Put any additional applicable categories in secondary_categories
-- Do not repeat the primary category in secondary_categories
-- Use only the allowed categories and severity values
-
-Ticket:
-{ticket_text}
-""",
+                "content": prompt,
             },
         ],
         text={
@@ -86,6 +95,7 @@ Ticket:
         },
     )
 
+    # print(f'\n{response.output_text=}\n\n')
     return json.loads(response.output_text)
 
 
