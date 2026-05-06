@@ -33,8 +33,8 @@ def recommend_next_steps(classification:dict, info: dict) -> dict:
         Based on the incident classification and extracted details, recommend appropriate next steps.
 
         Inputs:
-        - Classification (type, severity)
-        - Extracted details (summary, actions taken, patient condition)
+        - Classification : (Description: type, severity){classification}
+        - Extracted details (Description: summary, actions taken, patient condition) {info}
 
         Output:
         - recommended_actions: list of short, actionable steps
@@ -104,7 +104,7 @@ def recommend_next_steps(classification:dict, info: dict) -> dict:
         },
     )
 
-    print(f'\n{response.output_text=}\n\n')
+    # print(f'\n{response.output_text=}\n\n')
     return json.loads(response.output_text)
 
 

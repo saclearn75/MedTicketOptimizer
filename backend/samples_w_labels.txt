@@ -49,3 +49,52 @@ Duplicate patient record created in system. Records merged after identification.
 Visitor slipped in hallway due to wet floor. No injuries reported. Warning signs placed.
 Fire alarm triggered accidentally during maintenance work. Evacuation protocol initiated briefly.
 
+#################  Demo Ticket 1 (BEST OVERALL)
+
+This one exercises:
+
+medication error
+escalation
+multiple staff roles
+patient harm
+operational recommendations
+
+Patient Mary Collins (DOB: 04/12/1958, MRN: 882731) was administered the incorrect evening insulin dosage during the 7 PM medication pass in Ward C. The assigned nurse noticed abnormal glucose readings approximately 45 minutes later and notified the attending physician. Patient reported dizziness and mild confusion but is currently stable and under observation. Preliminary review suggests the medication administration record displayed outdated dosage instructions after a chart update earlier in the afternoon. Pharmacy and nursing supervisor have been informed. Further review needed to determine whether additional patients may have been affected by the same chart synchronization issue.
+
+This is excellent because your pipeline should produce:
+
+high severity
+escalation
+nurse + physician roles
+workflow/process issue
+medication error
+meaningful recommendations
+
+
+#################  Demo Ticket 2 (Strong operational workflow)
+
+Exercises:
+
+equipment failure
+workflow disruption
+radiology relevance
+operational escalation
+Radiology staff reported intermittent PACS outages beginning at approximately 2:15 AM during overnight CT imaging operations. Multiple studies failed to upload correctly, and two technicians reported delayed image availability in patient charts. One trauma patient experienced a 25-minute delay before imaging results became accessible to the emergency department physician. IT support restarted the PACS interface service, which temporarily restored functionality, but additional upload failures were observed later in the shift. Root cause remains unclear. Engineering support and Radiology IT have not yet completed a full review of overnight logs.
+
+This one aligns very well with your background.
+
+#################   Demo Ticket 3 (Messier, realistic support scenario)
+
+Exercises:
+
+communication failures
+unclear ownership
+uncertainty extraction
+Patient discharge for John Ramirez (MRN: 192844) was delayed after nursing staff reported that updated lab results were not visible in the patient chart. Intake staff stated the laboratory interface appeared operational earlier in the day, but several departments later reported delayed synchronization of records. The attending physician was unable to finalize discharge paperwork for over two hours while waiting for confirmation of lab values. No direct patient harm has been identified at this time, but staff reported significant workflow disruption and confusion regarding escalation ownership.
+
+Good for:
+
+uncertainty extraction
+communication error
+workflow issue
+operational recommendations

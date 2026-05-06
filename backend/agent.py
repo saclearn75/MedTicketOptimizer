@@ -8,7 +8,6 @@ import tools.recommendor as recommendor
 patient_record_samples = []
 with open ('samples.txt') as f: 
     for each in f: 
-        # print (each.strip())
         patient_record_samples.append(each.strip())
 
 # for i in range(3, 10): 
@@ -87,11 +86,11 @@ if __name__ == "__main__":
             People notified: 
                 {', '.join(map(str,json_info["people_involved"])) if json_info["people_involved"] else 'None'}
 
-            Open risks / uncertainties: 
+            Open risks or uncertainties: 
                 {', '.join(map(str, json_info["uncertainties"])) if json_info["uncertainties"] else 'None recorded'}
         
             Next Steps: 
-                {', \n'.join(map(str, json_next_steps["recommended_actions"])) if json_next_steps["recommended_actions"] else 'None'}
+                {', '.join(map(str, json_next_steps["recommended_actions"])) if json_next_steps["recommended_actions"] else 'None'}
 
             Priority: 
                 {json_next_steps["priority"]}
@@ -102,7 +101,7 @@ if __name__ == "__main__":
             Rationale
                 {json_next_steps["rationale"]}
         -------------------------------------------------------------
-        
+     
         '''
         # print (f'\n {json_classification=} \n\n')
         # print (f'{json_info=} \n\n')

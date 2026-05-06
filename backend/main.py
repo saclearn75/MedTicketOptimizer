@@ -6,7 +6,7 @@ import tools.extractor as extractor
 import tools.recommendor as recommendor
 
 from pydantic import BaseModel
-
+from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,10 +25,22 @@ app.add_middleware(
 class Ticket (BaseModel):
     text: str|None = ''
 
+class AnalyzeTicketResponse(BaseModel):
+    classification: dict[str, Any]
+    extracted_info: dict[str, Any]
+    recommendation: dict[str, Any]
+
 
 @app.get('/')
 def homePage ():
     return "Medical Ticket Classifier"
+
+
+@app.post('/ticket1/')
+def analyze_ticket_echo(ticket:Ticket):
+     print (f'     received from page: {ticket.text}')
+     return ticket
+
 
 @app.post('/ticket/')
 def analyze_ticket(ticket:Ticket):
@@ -36,12 +48,17 @@ def analyze_ticket(ticket:Ticket):
         ticket.text = 'Enter some valid text'
         return ticket 
     
+    print (f'analyze_ticket: received text: {ticket.text}')
+    # return ticket
     classification = classifier.classify_ticket(ticket.text)
     info =extractor.extract_info(ticket.text)
     next_steps =recommendor.recommend_next_steps(classification, info)
-
-    return [classification, info, next_steps]
-
+    print (f'{classification=}, \n {info=}, \n {next_steps=}')
+    return AnalyzeTicketResponse(
+        classification=classification,
+        extracted_info=info,
+        recommendation=next_steps,
+    )
 
 
 if __name__=='__main__':
