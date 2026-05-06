@@ -44,6 +44,7 @@ The main processing agent passes the report through a chain of agents:
 - OpenAI Responses API
 - Structured Outputs / JSON Schema
 - Pydantic
+- Bootstrap
 
 
 
