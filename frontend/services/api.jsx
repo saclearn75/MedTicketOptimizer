@@ -1,7 +1,9 @@
 // frontend/src/services/api.js
 export async function analyzeTicket(ticketText) {
-    console.log ('sending text :'+ticketText)
-  const response = await fetch("http://localhost:8000/ticket", {
+  console.log ('sending text :'+ticketText)
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const response = await fetch(`${API_BASE_URL}/ticket`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
